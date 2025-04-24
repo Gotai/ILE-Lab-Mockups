@@ -31,7 +31,7 @@ Add your mockups (e.g., submodule repo, .txt, .pdf, .pptx, etc.) inside this fol
 Step 4: Stage and commit your changes
 ```sh
 git add GROUP_NUMBER
-git commit -m "Add presentation for GROUP_NUMBER"
+git commit -m "YOUR MESSAGE"
 ```
 
 Step 5: Push your branch
