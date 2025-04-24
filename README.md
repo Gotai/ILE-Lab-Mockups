@@ -45,18 +45,19 @@ git push -u origin GROUP_NUMBER
 ILE-Lab-Mockups/
 │
 ├── README.md
-├── Group1_Name/
+├── Group_1/
 │   ├── submodule, .txt, .pdf, .pptx, etc.
 │   ├── others/
 │
-├── Group2_Name/
+├── Group_2/
 │   ├── submodule, .txt, .pdf, .pptx, etc.
 │   ├── others/
 │
-├── Group3_Name/
+├── Group_3/
 │   ├── submodule, .txt, .pdf, .pptx, etc.
 │   ├── others/
 |
+├── etc.....
 └── .gitignore
 ```
 
