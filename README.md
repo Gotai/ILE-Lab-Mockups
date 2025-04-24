@@ -41,7 +41,8 @@ git push -u origin GROUP_NUMBER
 
 
 ## Structure
-📁 student-presentations/
+```
+ILE-Lab-Mockups/
 │
 ├── README.md
 ├── Group1_Name/
@@ -57,4 +58,5 @@ git push -u origin GROUP_NUMBER
 │   ├── others/
 |
 └── .gitignore
+```
 
