@@ -1,5 +1,5 @@
 Define the domain knowledge
-- eg. Geometry tutor, Machine Learning tutor etc.
+- eg. Geometry tutor, Machine Learning
 
 Define the questions
 - 5 questions at least (MultipleChoice, or TextBox)
