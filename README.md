@@ -56,7 +56,22 @@ ILE-Lab-Mockups/
 │   ├── submodule, .txt, .pdf, .pptx, etc.
 │   ├── others/
 |
-├── etc.....
+├── Group_4/
+│   ├── submodule, .txt, .pdf, .pptx, etc.
+│   ├── others/
+│
+├── Group_5/
+│   ├── submodule, .txt, .pdf, .pptx, etc.
+│   ├── others/
+│
+├── Group_6/
+│   ├── submodule, .txt, .pdf, .pptx, etc.
+│   ├── others/
+│
+├── Group_7/
+│   ├── submodule, .txt, .pdf, .pptx, etc.
+│   ├── others/
+|
 └── .gitignore
 ```
 
