@@ -1,10 +1,10 @@
-# Student Mockups Repository
+# Student Mock-ups Repository
 
 Welcome! This repository is for submitting group mockups for **[Intelligent Learning Environments - Lab]**.
 
 Each group should:
 - Create a **new branch** for your submission.
-- Add your mockups in a folder named after your group.
+- Add your mock-ups in a folder named after your group.
 
 ---
 
