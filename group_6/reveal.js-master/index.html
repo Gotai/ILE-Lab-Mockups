@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Intelligent Tutor Mockup</title>
+
+    <!-- Reveal.js Core CSS -->
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <!-- Theme -->
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <!-- Custom Styles -->
+    <style>
+      /* Ensure slides can scroll if content overflows */
+      .reveal .slides section {
+        overflow-y: auto;
+        max-height: 95vh; /* Adjust as needed */
+        padding-bottom: 20px; /* Space at bottom */
+        box-sizing: border-box;
+        text-align: left; /* Align content left for readability */
+      }
+
+      .question-container {
+        background-color: rgba(50, 50, 70, 0.8);
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .question-text {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+      }
+
+      .question-image,
+      .hint-image {
+        max-width: 80%;
+        height: auto;
+        display: block;
+        margin: 15px auto; /* Center images */
+        border-radius: 5px;
+      }
+
+      .options-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+      }
+
+      .option-item {
+        background-color: rgba(70, 70, 90, 0.9);
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 1px solid transparent;
+      }
+
+      .option-item:hover:not(.disabled) {
+        background-color: rgba(90, 90, 110, 0.9);
+      }
+
+      .fill-blank-input {
+        padding: 10px;
+        font-size: 1em;
+        margin-right: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        min-width: 200px;
+      }
+
+      .submit-button,
+      .hint-button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        background-color: #4caf50; /* Green */
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+      .submit-button:hover:not(:disabled),
+      .hint-button:hover:not(:disabled) {
+        background-color: #45a049;
+      }
+      .submit-button:disabled,
+      .hint-button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+      .hint-button {
+        background-color: #007bff; /* Blue */
+        margin-top: 15px;
+      }
+      .hint-button:hover:not(:disabled) {
+        background-color: #0056b3;
+      }
+
+      .feedback {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 4px;
+        font-weight: bold;
+        min-height: 20px; /* Ensure space even when empty */
+      }
+
+      .feedback.correct {
+        background-color: rgba(40, 167, 69, 0.8); /* Greenish */
+        color: #fff;
+        border: 1px solid #28a745;
+      }
+      .feedback.correct::before {
+        content: "✅ ";
+      }
+
+      .feedback.wrong {
+        background-color: rgba(220, 53, 69, 0.8); /* Reddish */
+        color: #fff;
+        border: 1px solid #dc3545;
+      }
+      .feedback.wrong::before {
+        content: "❌ ";
+      }
+
+      .option-item.correct-option {
+        border: 2px solid #28a745;
+        background-color: rgba(40, 167, 69, 0.5);
+      }
+
+      .option-item.wrong-option {
+        border: 2px solid #dc3545;
+        background-color: rgba(220, 53, 69, 0.5);
+      }
+      .option-item.disabled {
+        cursor: default;
+        opacity: 0.7;
+      }
+
+      .hints-container {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #555;
+      }
+
+      .hint-item {
+        background-color: rgba(60, 60, 80, 0.7);
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        font-style: italic;
+        color: #eee;
+      }
+
+      p.speaker-n {
+        background-color: #343131;
+        padding: 8px 8px;
+        color:#64428c
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Welcome to the Tutor!</h2>
+          <p>Navigate using the arrows (or swipe) to see the questions.</p>
+          <p class="speaker-n">Press "s" to see the questions related skills on the side panel.</p>
+          <aside class ="notes">
+            The tutor is based on the following learning theories:
+            <ul>
+              <li>Constructivism</li>
+                <ul>
+                  <li>Questions rely on learners' already existing knowledge models of machine learning/training AI</li>
+                  <li>Prior existing knowledge schemes provide the foundation to actively construct further knowledge by reflecting and exploring the domain of over/underfitting</li>
+                  <li>The interaction with the environment (Tasks in the Tutor) offers the opportunity to apply newly acquired skills to manifest knowledge by assimilation or accommodation</li>
+                </ul>
+
+              <li>Cognitivism</li>
+                <ul>
+                  <li>Learning depends on learner’s memory capacity and their information retrieval abilities</li>
+                  <li>Inspired by the cognitive theory of multimedia learning we chose to utilise pictures and words to optimise learning, preventing work overload</li>
+                  <li>Focus on words and pictures to construct coherent mental representations</li>
+                </ul>
+            </ul>
+
+            Additionally:
+            Children have limited cognitive abilities, a simplification of questions and tasks are crucial for hindering demotivation and to foster a sense of accomplishments to encourage inquisitiveness.
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // --- Question Data ---
+      const questions = [
+      // 1. What is Overfitting?
+      {
+        type: "mcq",
+        question: "What is the correct definition of overfitting?",
+        image: null,
+        options: [
+          { text: "A model that memorizes the training data and performs poorly on new data", correct: true },
+          { text: "A model that simplifies to improve generalization", correct: false },
+          { text: "A model that performs equally well on training and test data", correct: false },
+          { text: "A model that ignores the training data and predicts randomly", correct: false },
+        ],
+        hints: [
+          { text: "Think about what happens when a model is too focused on just the training data." },
+          { text: "Overfitting = memorizing instead of learning." },
+          { text: "The model performs well on training data but fails on unseen examples." }
+        ],
+        notes: [
+          { text:"Basic understanding of machine learning" },
+          { text: "Comparing and analysing information provided by hints to solve question (analytical reasoning)"},
+          { text: "Retrieval of declarative information"}
+        ]
+      },
+
+      // 2. What is Underfitting?
+      {
+        type: "mcq",
+        question: "What does it mean when a model is underfitting?",
+        image: null,
+        options: [
+          { text: "It performs well on both training and test data", correct: false },
+          { text: "It fails to learn from the training data at all", correct: true },
+          { text: "It memorizes the data perfectly", correct: false },
+          { text: "It uses too much training data", correct: false },
+        ],
+        hints: [
+          { text: "Underfitting = model is too simple to learn the patterns." },
+          { text: "It doesn’t even do well on training data!" },
+          { text: "Imagine trying to solve all problems with only 1+1 = 2." }
+        ],
+        notes: [
+          { text: "Active recall of prior knowledge e.g. Know the goal of training a model"},
+          { text: "Fact-checking ability e.g. falsification"},
+          { text: "Higher-order critical thinking"},
+          { text: "Assimilation and accommodation"}
+        ] 
+      },
+
+      // 3. How do they look like? (Visual)
+      {
+        type: "mcq",
+        question: "Which of these graphs likely shows an overfitted model?",
+        image: "/images/overfitting.jpg",
+        options: [
+          { text: "A", correct: false },
+          { text: "B", correct: false },
+          { text: "C", correct: true }
+        ],
+        hints: [
+          { text: "Overfit models look too complex." },
+          { text: "They try to hit every training point, even the weird ones." },
+          { text: "Generalization is poor, but training accuracy is perfect." }
+        ],
+        notes: [
+          { text: "Recall of declarative memory (retrieve concept of overfitting)"},
+          { text: "Attention to details, ability to utilise newly acquired information by creating and retrieving associations to construct further knowledge"},
+          { text: "Testing understanding by applying knowledge on task(s) (interacting with the environment/knowledge-construction tasks)"}
+        ]
+      },
+
+      // 4. Consequence of Overfitting
+      {
+      type: "fill-blank",
+      question: "A model that performs well on training data but poorly on test data is suffering from ____.",
+      image: null,
+      answer: "overfitting",
+        hints: [
+          { text: "What happens when your model only works well on data it’s already seen?" },
+          { text: "That’s the core symptom of overfitting." }
+        ],
+        notes: [
+          { text: "Transfer of learning (near transfer) —> recall of declarative memory"},
+          { text: "Testing understanding by applying knowledge on task(s) (interacting with the environment)"},
+          { text: "Retrieval of knowledge to manifest newly acquired informations"},
+          { text: "Critical differentiation & Conceptual Understanding (Domain Knowledge)"}
+        ]
+      },
+
+      // 5. Consequence of Underfitting
+      {
+        type: "fill-blank",
+        question: "If a model is too simple to even learn the training data well, it's an example of ____.",
+        image: null,
+        answer: "underfitting",
+        hints: [
+          { text: "A simple model can’t capture complex patterns." },
+          { text: "Underfitting = underlearning." }
+        ],
+        notes: [
+          { text: "Transfer of learning (near transfer) —> recall of declarative memory"},
+          { text: "Testing understanding by applying knowledge on task(s) (interacting with the environment)"},
+          { text: "Retrieval of knowledge to manifest newly acquired informations"},
+          { text: "Critical differentiation & Conceptual Understanding (Domain Knowledge)"}
+        ]
+      },
+
+      // 6. Generalization Skill
+      {
+        type: "mcq",
+        question: "Which model is likely to perform best on new data?",
+        image: null,
+        options: [
+          { text: "A model that memorizes training data", correct: false },
+          { text: "A model that didn’t learn much at all", correct: false },
+          { text: "A model that learns patterns and generalizes", correct: true },
+          { text: "A model that guesses randomly", correct: false },
+        ],
+        hints: [
+          { text: "Memorizing isn’t the same as understanding." },
+          { text: "Generalization is key to good ML performance." },
+          { text: "Think like a student who understands, not just remembers." }
+        ],
+        notes: [
+          { text: "Transfer of learning (near transfer)"},
+          { text: "Critical reading, interpretation & comparative reasoning"},
+          { text: "Retrieval of previously acquired knowledge to manifest informations by: reactivating schemes, constructive processing and active recall of informations"}
+        ]
+      }
+    ];
+
+
+      // --- Dynamic Slide Generation ---
+      const slidesContainer = document.querySelector(".slides");
+
+      questions.forEach((qData, index) => {
+        const section = document.createElement("section");
+        section.setAttribute("data-question-index", index); // Store index on the slide
+
+        let questionHTML = `
+                <div class="question-container">
+                    <div class="question-text">${qData.question}</div>
+            `;
+
+        if (qData.image) {
+          questionHTML += `<img src="${qData.image}" alt="Question Image" class="question-image">`;
+        }
+
+        // --- Answer Area ---
+        if (qData.type === "mcq") {
+          questionHTML += `<ul class="options-list" id="options-${index}">`;
+          qData.options.forEach((opt, optIndex) => {
+            questionHTML += `
+                        <li class="option-item" data-correct="${opt.correct}" data-question-index="${index}">
+                            ${opt.text}
+                        </li>
+                    `;
+          });
+          questionHTML += `</ul>`;
+        } else if (qData.type === "fill-blank") {
+          questionHTML += `
+                    <div class="answer-area">
+                         <input type="text" class="fill-blank-input" id="input-${index}" placeholder="Type your answer here">
+                         <button class="submit-button" data-question-index="${index}">Check Answer</button>
+                    </div>
+                `;
+        }
+
+        // --- Feedback Area ---
+        questionHTML += `<div class="feedback" id="feedback-${index}"></div>`;
+
+        // --- Hint System ---
+        if (qData.hints && qData.hints.length > 0) {
+          questionHTML += `
+                    <button class="hint-button" data-question-index="${index}" data-hint-index="-1">Get Next Hint</button>
+                    <div class="hints-container" id="hints-${index}"></div>
+                `;
+        }
+
+        questionHTML += `</div>`; // Close question-container
+
+        // --- Speaker Notes ---
+        if (qData.notes) {
+          questionHTML += `<aside class ="notes">`;
+          questionHTML += `<ul>`;
+          qData.notes.forEach((note, noteIndex) => {
+            questionHTML += `<li>${note.text}</li>`
+          });
+          questionHTML += `</ul>`
+          questionHTML += `</aside>`;          
+        }
+
+        section.innerHTML = questionHTML;
+        slidesContainer.appendChild(section);
+      });
+
+      // --- Event Listeners (Post-Generation) ---
+
+      // MCQ Option Clicks
+      document.querySelectorAll(".option-item").forEach((item) => {
+        item.addEventListener("click", handleMcqClick);
+      });
+
+      // Fill-in-the-Blank Submit Clicks
+      document.querySelectorAll(".submit-button").forEach((button) => {
+        button.addEventListener("click", handleFillBlankSubmit);
+      });
+
+      // Fill-in-the-Blank Enter Key Press
+      document.querySelectorAll(".fill-blank-input").forEach((input) => {
+        input.addEventListener("keypress", (event) => {
+          if (event.key === "Enter") {
+            // Find the associated button and trigger its click
+            const index = input.id.split("-")[1];
+            const button = document.querySelector(
+              `.submit-button[data-question-index="${index}"]`
+            );
+            if (button && !button.disabled) {
+              handleFillBlankSubmit({ target: button }); // Simulate click event
+            }
+          }
+        });
+      });
+
+      // Hint Button Clicks
+      document.querySelectorAll(".hint-button").forEach((button) => {
+        button.addEventListener("click", handleHintClick);
+      });
+
+      // --- Event Handler Functions ---
+
+      function handleMcqClick(event) {
+        const clickedOption = event.target;
+        const questionIndex = clickedOption.getAttribute("data-question-index");
+        const isCorrect = clickedOption.getAttribute("data-correct") === "true";
+        const optionsList = document.getElementById(`options-${questionIndex}`);
+        const feedbackDiv = document.getElementById(
+          `feedback-${questionIndex}`
+        );
+        const hintButton = document.querySelector(
+          `.hint-button[data-question-index="${questionIndex}"]`
+        );
+
+        // Remove previous feedback classes from all options
+        optionsList.querySelectorAll(".option-item").forEach((opt) => {
+          opt.classList.remove("correct-option", "wrong-option", "disabled");
+        });
+
+        // Provide feedback
+        if (isCorrect) {
+          clickedOption.classList.add("correct-option");
+          feedbackDiv.textContent = "Correct!";
+          feedbackDiv.className = "feedback correct";
+
+          // Only disable options and hint button when correct
+          optionsList.querySelectorAll(".option-item").forEach((opt) => {
+            opt.classList.add("disabled");
+          });
+          if (hintButton) {
+            hintButton.disabled = true;
+            hintButton.textContent = "Question Completed";
+          }
+        } else {
+          clickedOption.classList.add("wrong-option");
+          feedbackDiv.textContent = "Incorrect. Try again!";
+          feedbackDiv.className = "feedback wrong";
+          // Don't disable the hint button or other options
+        }
+      }
+
+      function handleFillBlankSubmit(event) {
+        const submitButton = event.target;
+        const questionIndex = submitButton.getAttribute("data-question-index");
+        const inputField = document.getElementById(`input-${questionIndex}`);
+        const feedbackDiv = document.getElementById(
+          `feedback-${questionIndex}`
+        );
+        const hintButton = document.querySelector(
+          `.hint-button[data-question-index="${questionIndex}"]`
+        );
+        const correctAnswer = questions[questionIndex].answer;
+        const userAnswer = inputField.value.trim();
+
+        // Check answer (case-insensitive)
+        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+          feedbackDiv.textContent = `Correct! The answer is "${correctAnswer}".`;
+          feedbackDiv.className = "feedback correct";
+          inputField.style.borderColor = "#28a745"; // Green border
+
+          // Only disable input and buttons when correct
+          inputField.disabled = true;
+          submitButton.disabled = true;
+          if (hintButton) {
+            hintButton.disabled = true;
+            hintButton.textContent = "Question Completed";
+          }
+        } else {
+          feedbackDiv.textContent = `Incorrect. Try again!`;
+          feedbackDiv.className = "feedback wrong";
+          inputField.style.borderColor = "#dc3545"; // Red border
+          // Don't disable anything for wrong answers
+          inputField.select(); // Select the text for easy retry
+        }
+      }
+
+      function handleHintClick(event) {
+        const hintButton = event.target;
+        const questionIndex = hintButton.getAttribute("data-question-index");
+        let currentHintIndex = parseInt(
+          hintButton.getAttribute("data-hint-index")
+        );
+        const hintsContainer = document.getElementById(
+          `hints-${questionIndex}`
+        );
+        const questionHints = questions[questionIndex].hints;
+
+        currentHintIndex++; 
+
+        if (currentHintIndex < questionHints.length) {
+          const hintData = questionHints[currentHintIndex];
+          const hintElement = document.createElement("div");
+          hintElement.classList.add("hint-item");
+
+          let hintContent = "";
+          if (hintData.text) {
+            hintContent += `<p>${hintData.text}</p>`;
+          }
+          if (hintData.image) {
+            hintContent += `<img src="${hintData.image}" alt="Hint Image" class="hint-image">`;
+          }
+          hintElement.innerHTML = hintContent;
+
+          hintsContainer.appendChild(hintElement);
+          hintButton.setAttribute("data-hint-index", currentHintIndex); // Update the button's state
+
+          // Disable button if it was the last hint
+          if (currentHintIndex === questionHints.length - 1) {
+            hintButton.disabled = true;
+            hintButton.textContent = "All Hints Shown";
+          }
+        } else {
+          hintButton.disabled = true;
+          hintButton.textContent = "All Hints Shown";
+        }
+      }
+    </script>
+
+    <!-- Reveal.js Plugins -->
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+     
+      Reveal.initialize({
+        hash: true, // Enables deep linking to slides
+        controls: true, // Display controls in the bottom right corner
+        progress: true, // Display a presentation progress bar
+        center: true, // Vertical centering
+        slideNumber: "c/t", // Show slide number (current/total)
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
