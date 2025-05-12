@@ -1,0 +1,73 @@
+Subject:
+ - LaTeX 
+
+ Questions:
+
+  1. What is LaTeX?
+      - True Answer: A markup language to programmaticaly describe,
+      manage and update a document layout
+      and its content
+      - A Texteditor
+      - An Operatingsystem
+      - Young people slang for latin
+
+      Hints:
+      1 It is nothing like MS Word 
+      2 Your fridge does not run on LaTeX
+      3 Young people would rather study latin than latex
+      4 The answer is {True Answere}!
+
+      Related skills:
+      - Word/Google Docs
+      - HTML
+      - Programming
+      - Mathematics
+      - Science Stuff 
+      - Literature (Writing/Creative writing)
+
+  2. How is a LaTeX File structured?
+      - True: Preamble + Textfile
+      - It is not, Entropy consumes all
+      - Header, Body and Footer
+      - Each Sentence has it's own File
+
+      Hints: 
+      - Head and Body, Knees and Toes are not relevant to LaTeX
+      - Everything in Reality strifes for Entropy. The digital world is not Reality tho.
+      - Files per Sentece is a bit much, isn't it?
+      - Just like your Language Teachers, Preamble + Main Content is the way to go.
+
+  3. Write an equation that looks like this : $\Sigma_{i=1}^n x_i + 2$
+
+      Hints:
+      - What ways do you know to write an equation in latex? Which one would be the most simple one?
+      - Mathematics relays on variables like x, y and z. What other language and its letters can be found in mathematics?
+      - If certain words serve as keywords to do something, like render a greek latter, than you couldn't write that keyword into a text anymore, could you? Does LaTeX have a way to deal with that?
+      - You can put thing below or above other things by using _ and ^ respectivly
+      - Sometimes you want to group things together to effect them all together. How does Mathematics notate things in a group?
+      - Here is the answer $\Sigam_{i=1}^n x_i + 2$
+
+  4. Suppose you a diagram you want to include into your work. It is stored as diagram1.pdf in the same folder as your .tex file. Write the LaTeX expression that would show the diagram
+
+  A: \includegraphics{diagram1.pdf}
+
+  Hints: 
+  - There is no need to overcomplicate. You simply need to show the diagram, no special positioning needed.
+  - Basicaly, the task is to include a graphic, isn't it? Are the naming of such functions\keywords arbitrary?
+  - The solution does have the form \<Specific Keyword>{diagram1.pdf}
+  - Including graphics can be suprisingly hard. Sometimes it would be nice if we simply could tell it to include graphics, right?
+  - The solution is \includegraphics{diagram1.pdf}
+
+  5. Which one of these examples is not correct LaTeX
+
+    - $1 + 2 = 3$
+    - $(\frac{1}{2})^2$
+    - Suppose that x and y are Elements of Z\{0} (Answer)
+    - The failure of patiance does not include the build up of anger \cite{Nerd1}
+
+    Hints:
+    - One may install additonal features into LaTeX. Thus unknown keywords may very well be valid. We woudn't ask such a mean question!
+    - There is only one correct answer
+    - Recall what you know about the keywords and characters with special meanings
+    - If you wanted to print {} what would you have to do?
+    - The answer is number 3. The } is not closed properly as \{ escapes and printes {.
