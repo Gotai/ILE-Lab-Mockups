@@ -40,12 +40,12 @@ Subject:
   3. Write an equation that looks like this : $\Sigma_{i=1}^n x_i + 2$
 
       Hints:
-      - What ways do you know to write an equation in latex? Which one would be the most simple one?
+      - What ways do you know to write an equation in latex? Which one would be the simplest one?
       - Mathematics relays on variables like x, y and z. What other language and its letters can be found in mathematics?
-      - If certain words serve as keywords to do something, like render a greek latter, than you couldn't write that keyword into a text anymore, could you? Does LaTeX have a way to deal with that?
-      - You can put thing below or above other things by using _ and ^ respectivly
-      - Sometimes you want to group things together to effect them all together. How does Mathematics notate things in a group?
-      - Here is the answer $\Sigam_{i=1}^n x_i + 2$
+      - If certain words serve as keywords to do something, like render a Greek letter, then you couldn't write that keyword into a text anymore, could you? Does LaTeX have a way to deal with that?
+      - You can put thing below or above other things by using _ and ^ respectively
+      - Sometimes you want to group things together to affect them all together. How does Mathematics notate things in a group?
+      - Here is the answer $\Sigma_{i=1}^n x_i + 2$
 
       Related Skills:
       - Mathematics
