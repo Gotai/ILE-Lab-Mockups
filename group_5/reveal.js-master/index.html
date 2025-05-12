@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Interactive Driving Lessons</title>
+
+  <!-- Reveal.js CSS -->
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css">
+
+  <!-- Syntax highlight theme (optional) -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --primary-hover: #0056b3;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      --danger-color: #dc3545;
+      --light-text: #ffffff;
+      --dark-text: #212529;
+    }
+
+    .reveal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+      .reveal .slides section {
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          height: 100%;
+          overflow-y: auto;
+          padding: 20px;
+          padding-bottom: 40px;
+          box-sizing: border-box;
+      }
+
+    .reveal .slides section {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+      .question-container {
+          width: 90%;
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          max-height: 100%;
+          padding: 20px;
+          box-sizing: border-box;
+          justify-content: flex-start;
+          overflow-y: auto;
+          padding-bottom: 40px;
+      }
+
+    /* Home page styles */
+    .main-title {
+      font-size: min(4vw, 3em);
+      margin-bottom: 5vh;
+    }
+
+    .question-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+      .question-btn {
+          flex: 1 1 300px;
+          padding: 15px;
+          background-color: var(--primary-color);
+          margin-bottom: 3vh;
+          color: var(--light-text);
+          border-radius: 8px;
+          cursor: pointer;
+          text-align: center;
+          transition: all 0.3s ease;
+          font-size: min(2vw, 1.2em);
+      }
+    
+    .question-btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Home button styles */
+    .home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 8px 15px;
+      background-color: var(--success-color);
+      color: var(--light-text);
+      border-radius: 5px;
+      z-index: 100;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: all 0.2s ease;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .home-btn:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+
+    .home-btn:before {
+      content: '⌂';
+      font-size: 1.2em;
+    }
+
+    /* Question page styles */
+    .question-title {
+      font-size: min(3vw, 2em);
+      margin-bottom: 3vh;
+      text-align: center;
+    }
+
+    .question-text {
+      font-size: min(2.5vw, 1.3em);
+      margin-bottom: 4vh;
+      text-align: center;
+    }
+
+    .answer-options {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 1vh auto;
+    }
+
+    .answer-option {
+      display: block;
+      padding: 12px 15px;
+      margin: 5px 0;
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: min(2vw, 1.1em);
+      transition: all 0.2s ease;
+      color: var(--light-text);
+      text-align: left;
+    }
+
+    .answer-option:hover {
+      background-color: var(--primary-hover);
+      transform: translateX(5px);
+    }
+
+    .correct {
+      background-color: var(--success-color);
+    }
+
+    .incorrect {
+      background-color: var(--danger-color);
+    }
+
+      .hint-controls {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin: 1vh 0 6vh;
+      }
+
+    .hint-btn, .show-hint-answer-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: min(2vw, 1em);
+      transition: all 0.2s ease;
+    }
+
+    .hint-btn {
+      background-color: var(--warning-color);
+      color: var(--dark-text);
+    }
+
+    .show-hint-answer-btn {
+      background-color: var(--warning-color);
+      color: var(--dark-text);
+    }
+
+    .hint-content, .hint-answer, .explanation {
+      margin: 10px auto;
+      padding: 15px;
+      background-color: rgba(33, 33, 33, 0.7);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 800px;
+      font-size: min(2vw, 1em);
+      display: none;
+    }
+
+    /* Feedback popup */
+    .feedback-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      z-index: 1000;
+      min-width: 300px;
+      max-width: 80%;
+      text-align: center;
+      color: var(--dark-text);
+    }
+
+    .feedback-popup.correct {
+      border: 3px solid var(--success-color);
+    }
+
+    .feedback-popup.incorrect {
+      border: 3px solid var(--danger-color);
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Status message for multi-select questions */
+    .status-message {
+      margin: 15px 0;
+      font-weight: bold;
+      text-align: center;
+      min-height: 24px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .question-btn {
+        flex: 1 1 100%;
+      }
+
+      .home-btn {
+        top: 10px;
+        left: 10px;
+        padding: 5px 10px;
+      }
+
+      .answer-option, .hint-btn, .show-hint-answer-btn {
+        padding: 10px;
+      }
+
+      .question-container {
+        padding: 10px;
+      }
+    }
+
+    /* Ensure content fits without scrolling */
+    .reveal section {
+      overflow: hidden;
+    }
+
+    /* For very small screens */
+    @media (max-height: 500px) {
+      .main-title {
+        margin-bottom: 2vh;
+      }
+
+      .question-title {
+        margin-bottom: 1vh;
+      }
+
+      .answer-options {
+        margin-bottom: 1vh;
+      }
+
+      .answer-option {
+        padding: 8px;
+        margin: 5px 0;
+      }
+
+      .hint-controls {
+        margin: 1vh 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+        <!-- Home Slide -->
+        <section id="home">
+            <h1 class="main-title">Interactive Driving Lessons</h1>
+            <div id="question-list">
+                <div class="question-btn" data-slide="question1">Question 1: Road Signs and Their Meanings</div>
+                <div class="question-btn" data-slide="question2">Question 2: Traffic Sign Recognition and Interpretation</div>
+                <div class="question-btn" data-slide="question3">Question 3: Traffic controls, Right-of-way, Decision making</div>
+                <div class="question-btn" data-slide="question4">Question 4: Junction prioritisation issues</div>
+                <div class="question-btn" data-slide="question5">Question 5</div>
+                <div class="question-btn" data-slide="question6">Question 6</div>
+            </div>
+        </section>
+
+        <!-- Question 1 -->
+        <section id="question1">
+            <button class="home-btn">Home</button>
+            <div class="question-container">
+                <h2 class="question-title">Road Signs and Their Meanings</h2>
+                <p class="question-text"> What do you do when you see these traffic signs?</p>
+                <small> Multiple anwer possible</small>
+                <img src="https://theorytest.org.uk/wp-content/uploads/2021/01/children-crossing-sign.png "
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) Greatest alertness</div>
+                    <div class="answer-option" data-correct="true">B) Readiness to brake</div>
+                    <div class="answer-option" data-correct="true">C) Reduction in speed</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>1.The sign will point you to a school, kindergarten or playground nearby.</p>
+                        <p>2.Here you have to drive with adapted speed and increased attention.</p>
+                        <p>3.Children could suddenly run onto the road without paying attention to the traffic. Always be ready to brake.</p>
+                    </div>
+                </div>
+                <img src="https://theorytest.org.uk/wp-content/uploads/2021/01/double-bend-ahead-sign-first-to-the-right.png"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) Reduce your speed</div>
+                    <div class="answer-option" data-correct="true">B) Drive as far as possible over on the right-hand side</div>
+                    <div class="answer-option" data-correct="true">C) Accelerate strongly immediately after the right bend</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>1.The sign warns you of a double bend.</p>
+                        <p>2.First expect a right turn, then a left turn. You could drive onto the oncoming lane.</p>
+                        <p>3.Adjust your speed and drive far to the right to avoid collision with oncoming traffic.</p>
+                    </div>
+                </div>
+                <img src="https://theorytest.org.uk/wp-content/uploads/2021/01/narrow-road-sign-both-sides-ahead.png"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) Reduce your speed</div>
+                    <div class="answer-option" data-correct="true">B) Refrain from overtaking</div>
+                    <div class="answer-option" data-correct="false">C) Always stop before the road narrows</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>1.This is a warning sign and it warns drivers of an imminent narrowing of the road.</p>
+                        <p>2.Stopping in front of the bottleneck is only required if an oncoming vehicle is already in the bottleneck.</p>
+                        <p>3.You have to expect oncoming traffic and behave as follows: Reduce your speed and refrain from overtaking maneuvers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 2 -->
+        <section id="question2">
+            <button class="home-btn">Home</button>
+            <div class="question-container">
+                <h2 class="question-title">Traffic Sign Recognition and Interpretation</h2>
+                <p class="question-text">What is the right thing to do?</p>
+                <img src="https://storage.googleapis.com/theory-svc-production-media/media/de/2021-04-01/1.3.01-038-M.png"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options">
+                    <div class="answer-option" data-correct="false">A) I must yield to the motorcycle.</div>
+                    <div class="answer-option" data-correct="true">B)  I’m allowed to go before the blue car.</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 1</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>Do I need to signal if I’m turning left while following the priority road?</p>
+                        <img src="https://storage.googleapis.com/theory-svc-production-media/media/de/2021-04-01/1.4.42-136.png"
+                             width="300"
+                             style="display: block; margin: 1vh auto;">
+                        <div class="show-hint-answer-btn">Show Answer</div>
+                        <div class="hint-answer">
+                            <p>Yes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 2</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>What does the upside-down triangle traffic sign indicate?</p>
+                        <img src="https://worksafetci.com/wp-content/uploads/What-Does-a-Triangle-Shape-Mean-on-Road-Signs-German-Yield.jpg"
+                             width="300"
+                             style="display: block; margin: 1vh auto;">
+                        <p>A. Stop completely before proceeding</p>
+                        <p>B. Yield to other traffic</p>
+                        <p>C. Priority road ahead</p>
+                        <p>D. No entry</p>
+                        <div class="show-hint-answer-btn">Show Answer</div>
+                        <div class="hint-answer">
+                            <p>B</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 3 -->
+        <section id="question3">
+            <button class="home-btn">Home</button>
+            <div class="question-container">
+                <h2 class="question-title">Traffic controls, Right-of-way, Decision making</h2>
+                <p class="question-text">Considering the traffic situation and controls at this intersection, which statements describe correct conduct?</p>
+                <img src="https://storage.googleapis.com/theory-svc-production-media/media/de/2021-04-01/1.2.37-002-B.png"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) The green car must wait.</div>
+                    <div class="answer-option" data-correct="true">B) From the right-turn lane, you may turn right while obeying the traffic signs.</div>
+                    <div class="answer-option" data-correct="false">C) I may only turn when the lights show "green".</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 1</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>Look at the traffic light the green car is facing. What does that signal require the green car to do?</p>
+                        <div class="show-hint-answer-btn">Show Answer</div>
+                        <div class="hint-answer">
+                            <p>The green car must stop and wait.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 2</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>Look at the lane to the right of the green car, which has a curved arrow and a sign. If you were in that lane, how would you determine when you can turn?</p>
+                        <div class="show-hint-answer-btn">Show Answer</div>
+                        <div class="hint-answer">
+                            <p>You would obey the traffic sign (the yield sign).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 4 -->
+        <section id="question4">
+            <button class="home-btn">Home</button>
+            <div class="question-container">
+                <h2 class="question-title">Junction prioritisation issues</h2>
+                <p class="question-text">What is the right course of action?</p>
+                <img src="https://storage.googleapis.com/theory-svc-production-media/media/de/2021-04-01/1.3.01-007-M.png"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) I have to allow the cyclist to pass through</div>
+                    <div class="answer-option" data-correct="true">B) I have to allow the [motorcyclist] to pass through</div>
+                    <div class="answer-option" data-correct="false">C) I may make the turn before the cyclist</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 1</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>At which places where there are no traffic signs regulating priority does the rule "right before left" apply?</p>
+                        <div class="answer-options">
+                            <div class="answer-option" data-correct="true">A) At crossroads and junctions</div>
+                            <div class="answer-option" data-correct="false">B) At driveways</div>
+                            <div class="answer-option" data-correct="false">C) At the end of a traffic calmed area</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 2</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>You are approaching a crossroads where the priority situation is not clear to you straightaway. What do you do?</p>
+                        <div class="answer-options">
+                            <div class="answer-option" data-correct="true">A) Wait, observe and come to an agreement with others, if necessary</div>
+                            <div class="answer-option" data-correct="false">B) Proceed according to the rule "right before left"</div>
+                            <div class="answer-option" data-correct="false">C) Always proceed when driving straight ahead</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h3>Explanation:</h3>
+                    <p>It is necessary to comply to the left yields to right rule. Grant the motorcyclist from the right the right of way before entering the intersection. Next, you as a left-turning driver, have to give priority to the oncoming cyclist. For the motorcyclist the cyclist comes from the right and thus has priority.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 5 -->
+        <section id="question5">
+            <button class="home-btn">Home</button>
+            <div class="question-container">
+                <p class="question-text">You have manoeuvred into the left lane by mistake, but would like to take a right turn. What is the right course of action?</p>
+                <img src="https://www.fuehrerschein-lernsystem.de/gfx2/small/1_2_37_012_M.jpg"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options">
+                    <div class="answer-option" data-correct="true">A)  I continue driving straight ahead or turn left</div>
+                    <div class="answer-option" data-correct="false">B)  I move carefully into the right-hand lane</div>
+                    <div class="answer-option" data-correct="false">C) I drive straight ahead and turn right at the intersection</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>With a solid line as a road edge marking, you must under no circumstances turn right. Rather, you must stay in your lane and continue straight or turn left.</p>
+                    </div>
+                </div>
+                <p class="question-text">A horse-drawn carriage is coming towards you. What should you do? I should:</p>
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) Avoid making noise</div>
+                    <div class="answer-option" data-correct="true">B) drive as far to the right as possible</div>
+                    <div class="answer-option" data-correct="false">C) switch on parking light</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 1</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>Drive as far to the right as possible when you encounter a horse-drawn carriage.</p>
+                    </div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 2</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>Do not honk and do not drive at high motor speed. The animals could be sensitive to noise and be frightened. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 6 -->
+        <section id="question6">
+            <button class="home-btn">Home</button>
+            <div class="question-container">
+                <p class="question-text">Who can go first?</p>
+                <img src="https://storage.googleapis.com/theory-svc-production-media/media/de/2021-04-01/1.3.01-018-M.png"
+                     width="300"
+                     style="display: block; margin: 1vh auto;">
+                <div class="answer-options multi-select">
+                    <div class="answer-option" data-correct="true">A) I must let the Motorcycle go first</div>
+                    <div class="answer-option" data-correct="true">B) I take priority over the Bus</div>
+                    <div class="answer-option" data-correct="false">C) I must let the Bus go first</div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 1</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>
+                            What does the upside-down triangle sign mean?
+                        </p>
+                        <div class="answer-options">
+                            <div class="answer-option" data-correct="true">A) Give way to other traffic</div>
+                            <div class="answer-option" data-correct="false">B) No parking</div>
+                            <div class="answer-option" data-correct="false">C) Stop completely before proceeding</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint-wrapper">
+                    <div class="hint-controls">
+                        <div class="hint-btn">Show Hint 2</div>
+                    </div>
+                    <div class="hint-content" style="display: none;">
+                        <p>The Bus wants to turn left, whereas you want to go straight, who should have priority in this situation?</p>
+                        <div class="show-hint-answer-btn">Show Answer</div>
+                        <div class="hint-answer">
+                            <p>You are going straight, whereas the bus wants to turn left, you have priority over the bus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+  <!-- Feedback Popup -->
+  <div class="feedback-popup">
+    <span class="close-popup">&times;</span>
+    <h3 id="feedback-title">Correct!</h3>
+    <p id="feedback-message">Well done! That's the right answer.</p>
+  </div>
+</div>
+
+<!-- Reveal.js Scripts -->
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize Reveal.js
+    const deck = Reveal.initialize({
+      hash: true,
+      transition: 'slide',
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      width: '100%',
+      height: '100%',
+      margin: 0,
+      minScale: 0.1,
+      maxScale: 3.0,
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+
+    // Home button functionality
+    document.querySelectorAll('.home-btn').forEach(btn => {
+      btn.addEventListener('click', () => Reveal.slide(0));
+    });
+
+    // Question navigation
+    document.querySelectorAll('.question-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const slideId = this.getAttribute('data-slide');
+        const sections = document.querySelectorAll('.slides > section');
+        sections.forEach((s, i) => {
+          if (s.id === slideId) Reveal.slide(i);
+        });
+      });
+    });
+
+    // Single-choice handling
+    document.querySelectorAll('.answer-options:not(.multi-select) .answer-option').forEach(option => {
+      option.addEventListener('click', function () {
+        const isCorrect = this.getAttribute('data-correct') === 'true';
+        
+        // Reset all options in the group
+        const allOptions = this.closest('.answer-options').querySelectorAll('.answer-option');
+        allOptions.forEach(opt => opt.classList.remove('correct', 'incorrect'));
+        
+        // Mark this option
+        this.classList.add(isCorrect ? 'correct' : 'incorrect');
+        
+        // Show feedback
+        showFeedback(isCorrect);
+        
+        // Show explanation
+        this.closest('.question-container').querySelector('.explanation').style.display = 'block';
+      });
+    });
+
+    // Multi-select handling
+    let correctAnswers = [];
+    const totalCorrectNeeded = 3; // For question 3
+    
+    document.querySelectorAll('.answer-options.multi-select .answer-option').forEach(option => {
+      option.addEventListener('click', function () {
+        const isCorrect = this.getAttribute('data-correct') === 'true';
+        const statusMessage = document.getElementById('status-message');
+        
+        // If already selected, ignore
+        if (this.classList.contains('correct') || this.classList.contains('incorrect')) {
+          return;
+        }
+        
+        if (isCorrect) {
+          // Mark as correct
+          this.classList.add('correct');
+          correctAnswers.push(this);
+          
+          // Check if all correct answers found
+          if (correctAnswers.length === totalCorrectNeeded) {
+            statusMessage.innerHTML = '<span style="color:#28a745;">🎉 All correct answers selected!</span>';
+            showFeedback(true);
+            this.closest('.question-container').querySelector('.explanation').style.display = 'block';
+          } else {
+            const remaining = totalCorrectNeeded - correctAnswers.length;
+            statusMessage.innerHTML = `<span style="color:#28a745;">✓ Correct!</span> Select ${remaining} more correct answer${remaining > 1 ? 's' : ''}.`;
+          }
+        } else {
+          // Mark as incorrect temporarily
+          this.classList.add('incorrect');
+          statusMessage.innerHTML = '<span style="color:#dc3545;">✗ Incorrect. Try again.</span>';
+          
+          // Remove incorrect marking after a delay
+          setTimeout(() => {
+            this.classList.remove('incorrect');
+          }, 1500);
+        }
+      });
+    });
+
+    // Hint functionality
+      document.querySelectorAll('.hint-btn').forEach(btn => {
+          btn.addEventListener('click', function () {
+              const wrapper = this.closest('.hint-wrapper');
+              const hintContent = wrapper.querySelector('.hint-content');
+
+              const isVisible = hintContent.style.display === 'block';
+
+              hintContent.style.display = isVisible ? 'none' : 'block';
+              this.textContent = isVisible ? 'Show Hint' : 'Hide Hint';
+          });
+      });
+
+    // Hint answer functionality
+    document.querySelectorAll('.show-hint-answer-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const hintAnswer = this.nextElementSibling;
+        const isVisible = hintAnswer.style.display === 'block';
+        
+        hintAnswer.style.display = isVisible ? 'none' : 'block';
+        this.textContent = isVisible ? 'Show Answer' : 'Hide Answer';
+      });
+    });
+
+    // Feedback popup
+    document.querySelector('.close-popup').addEventListener('click', () => {
+      document.querySelector('.feedback-popup').style.display = 'none';
+    });
+
+    // Show feedback popup
+    function showFeedback(isCorrect) {
+      const popup = document.querySelector('.feedback-popup');
+      const title = document.getElementById('feedback-title');
+      const message = document.getElementById('feedback-message');
+      
+      // Set feedback content
+      popup.className = 'feedback-popup';
+      popup.classList.add(isCorrect ? 'correct' : 'incorrect');
+      
+      title.textContent = isCorrect ? 'Correct!' : 'Incorrect';
+      message.textContent = isCorrect 
+        ? 'Well done! That\'s the right answer.' 
+        : 'Sorry, that\'s not right. Try again or check the explanation.';
+      
+      // Show popup
+      popup.style.display = 'block';
+      
+      // Hide after delay
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    }
+
+    // Make sure content fits viewport after Reveal.js initialization
+    Reveal.addEventListener('ready', function() {
+      adjustContentSize();
+    });
+
+    // Listen for window resizing
+    window.addEventListener('resize', adjustContentSize);
+
+    // Adjust content size to fit viewport
+    function adjustContentSize() {
+      const availableHeight = window.innerHeight * 0.9; // 90% of viewport height
+      const availableWidth = window.innerWidth * 0.9;  // 90% of viewport width
+      
+      // Set max-height for question containers
+      document.querySelectorAll('.question-container').forEach(container => {
+        container.style.maxHeight = `${availableHeight}px`;
+      });
+      
+      // Adjust font sizes if needed for extreme screen sizes
+      if (window.innerHeight < 500 || window.innerWidth < 400) {
+        document.documentElement.style.setProperty('--base-font-size', '14px');
+      } else {
+        document.documentElement.style.setProperty('--base-font-size', '16px');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
