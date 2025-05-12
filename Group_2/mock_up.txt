@@ -47,6 +47,12 @@ Subject:
       - Sometimes you want to group things together to effect them all together. How does Mathematics notate things in a group?
       - Here is the answer $\Sigam_{i=1}^n x_i + 2$
 
+      Related Skills:
+      - Mathematics
+      - Programming
+      - greek
+      - Computer Literacy
+
   4. Suppose you a diagram you want to include into your work. It is stored as diagram1.pdf in the same folder as your .tex file. Write the LaTeX expression that would show the diagram
 
   A: \includegraphics{diagram1.pdf}
@@ -71,3 +77,7 @@ Subject:
     - Recall what you know about the keywords and characters with special meanings
     - If you wanted to print {} what would you have to do?
     - The answer is number 3. The } is not closed properly as \{ escapes and printes {.
+
+    Related Skills:
+    - Mathematics
+    - Programming
