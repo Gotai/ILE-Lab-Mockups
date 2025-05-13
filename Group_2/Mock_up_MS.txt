@@ -1,0 +1,361 @@
+Subject:LaTeX
+
+Questions:
+
+1. What is LaTeX?
+      - True Answer: A markup language to programmaticaly describe,
+      manage and update a document layout
+      and its content
+      - A Texteditor
+      - An Operatingsystem
+      - Young people slang for latin
+
+      Hints:
+      1 It is nothing like MS Word
+      2 Your fridge does not run on LaTeX
+      3 Young people would rather study latin than latex
+      4 The answer is {True Answere}!
+
+      Related skills:
+      - Word/Google Docs
+      - HTML
+      - Programming
+      - Mathematics
+      - Science Stuff
+      - Literature (Writing/Creative writing)
+
+  2. How is a LaTeX File structured?
+      - True: Preamble + Textfile
+      - It is not, Entropy consumes all
+      - Header, Body and Footer
+      - Each Sentence has it's own File
+
+      Hints:
+      - Head and Body, Knees and Toes are not relevant to LaTeX
+      - Everything in Reality strifes for Entropy. The digital world is not Reality tho.
+      - Files per Sentece is a bit much, isn't it?
+      - Just like your Language Teachers, Preamble + Main Content is the way to go.
+
+3. How do you begin a LaTeX document?
+
+	-True Answer: With \documentclass{}
+	
+	-You just start typing like in Word
+		
+	-#include <document>
+
+	-You scream at your keyboard until something happens
+
+	Hints:
+
+	1 It’s not C++
+
+	2 Word processors let you type, LaTeX needs structure
+
+	3 Screaming might help emotionally, but not syntactically
+
+	4 Every document needs a class—it’s like picking a template
+
+	Related skills:
+
+	-Programming logic
+
+	-Document formatting
+
+	-Typesetting knowledge
+
+4. Which symbol is used for comments in LaTeX?
+
+	-True Answer: %
+	-//
+	-<!-- -->
+	-#
+
+	Hints:
+
+	-It’s not HTML
+
+	-It’s not Python either
+
+	-You’ve probably seen it in grocery discounts
+
+	-Think: “%This is a comment”
+
+	-Related skills:
+
+	-Programming
+
+	-Syntax comprehension
+
+5. What is the main purpose of LaTeX?
+
+	-True Answer: High-quality typesetting, especially for technical and scientific documents
+
+	-Drawing cartoons Making websites
+
+	-Writing code for hardware
+
+	Hints:
+
+	-You can’t build robots with it
+
+	-But you can write about how to build robots with it
+
+	-It’s a typesetter, not a sketchpad
+
+	-Think journals, theses, research papers
+
+	Related skills:
+
+	-Scientific writing
+
+	-Academic formatting
+
+	-Research documentation
+
+6. What is used to insert mathematical formulas in LaTeX?
+
+	-True Answer: Math mode, using $...$ or \[...\]
+
+	-Using emoji math ✖➕➗
+
+	-Pressing Alt + Shift + Math
+
+	-Wrapping it in double quotes
+
+	Hints:
+
+	-Math in LaTeX has its own space—literally
+
+	-You’re not texting your math teacher
+
+	-Quotes won’t do algebra justice
+
+	-Math mode: it’s not just a phase
+
+	Related skills:
+
+	-Mathematics
+
+	-Symbolic logic
+
+	-Technical writing
+
+7. What does \section{} do in LaTeX?
+
+	-True Answer: Creates a new titled section in your document
+
+	-Installs a firewall
+
+	-Sends an email
+
+	-Starts a Zoom meeting
+
+	Hints:
+
+	-It’s all about structure, not security
+
+	-No Wi-Fi is involved
+
+	-Zoom who?
+
+	-Sections divide your ideas
+
+	Related skills:
+
+	-Document organization
+
+	-Writing
+
+	-Presentation of ideas
+
+8. Which file extension does a basic LaTeX source file use?
+
+	-True Answer: .tex
+
+	-.docx
+
+	-.html
+
+	-.pdf
+
+	Hints:
+
+	-It’s not Microsoft’s world here
+
+	-HTML belongs to browsers
+
+	-PDF is what comes after compiling
+
+	-Think T-E-X as in TeX
+
+	Related skills:
+
+	-File management
+
+	-Document compilation
+
+9. What does the command \begin{itemize} do?
+
+	-True Answer: Starts an unordered list
+
+	-Begins a psychological breakdown
+
+	-Opens a treasure chest
+
+	-Prints Hello World
+
+	Hints:
+
+	-It’s about listing things, not losing your mind
+
+	-No loot included
+
+	-Great for bullet points, not for bullets
+
+	-Think of grocery lists—but smarter
+
+	Related skills:
+
+	-Structured writing
+
+	-Presentation of content
+
+10. What is the result of compiling a LaTeX file?
+
+	-True Answer: A well-formatted PDF document
+
+	-A crashed computer
+
+	-A spreadsheet
+
+	-An online website
+
+	Hints:
+
+	-You’re not making Excel happy
+
+	-It’s more about paper than pixels
+
+	-PDFs: The loyal outcome of your effort
+
+	-Compilation = Transformation
+
+
+11. How do you add a package in LaTeX?
+
+        - True Answer: \usepackage{}
+    
+        - \addlibrary{}
+        
+        - \insertpackage{}
+    
+        - \loadpackage{}
+
+        Hints:
+    
+        - "Library" and "package" are not the same in LaTeX.
+        
+        - "Insert" commands are not typical in LaTeX for packages.
+        
+        - "Load" sounds reasonable but is not the official command.
+        
+        - The correct command is \usepackage{}.
+
+         Related skills:
+        
+        - Programming syntax
+        
+        - Document customization
+        
+        - LaTeX environment setup
+
+12. How do you insert an image in LaTeX?
+
+        
+        - True Answer: \includegraphics{}
+        
+        - \insertimage{}
+        
+        - \putimage{}
+        
+        - \addpicture{}
+
+    Hints:
+        
+        - "Insert" is not the verb LaTeX uses for images.
+        
+        - "Putimage" is not a valid LaTeX syntax.
+        
+        - "Addpicture" does not exist as a LaTeX command.
+        
+        - The correct command to add images is \includegraphics{}.
+
+    Related skills:
+        
+        - Media formatting
+        
+        - Document structure
+        
+        - Typesetting control
+
+13. What happens if you forget \end{document} in LaTeX?
+
+        
+        - True Answer: The document will not compile correctly
+        
+        - The document will auto-fix itself
+        
+        - A page with random garbage appears
+        
+        - Nothing special happens
+
+    Hints:
+        
+        - LaTeX requires a clear end to the document.
+        
+        - Auto-correction is not a feature of LaTeX compilers.
+        
+        - Garbage output may happen, but it's not proper compilation.
+        
+        - Forgetting \end{document} will cause compilation failure.
+
+    Related skills:
+
+        
+        - Syntax control
+        
+        - Programming discipline
+        
+        - Debugging documents
+
+14. Which symbol must every LaTeX command start with?
+
+        
+        - True Answer: \\
+        
+        - %
+        
+        - /
+        
+        - \$
+
+    Hints:
+        
+        - Comments in LaTeX start with %, not commands.
+        
+        - / is not used to start commands in LaTeX.
+        
+        - \$ is related to math mode, not general commands.
+        
+        - Every LaTeX command starts with a backslash .
+
+    Related skills:
+
+        
+        - Syntax recognition
+        
+        - Programming basics
+        
+        - LaTeX fundamentals
+
