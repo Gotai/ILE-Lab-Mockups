@@ -1,0 +1,116 @@
+Subject:
+ - LaTeX 
+
+ Questions:
+
+  1. What is LaTeX?
+      - True Answer: A markup language to programmaticaly describe,
+      manage and update a document layout
+      and its content
+      - A Texteditor
+      - An Operatingsystem
+      - Young people slang for latin
+
+      Hints:
+      1 It is nothing like MS Word 
+      2 Your fridge does not run on LaTeX
+      3 Young people would rather study latin than latex
+      4 The answer is {True Answer}!
+
+      Related skills:
+      - Word/Google Docs
+      - HTML
+      - Programming
+      - Mathematics
+      - Science Stuff 
+      - Literature (Writing/Creative writing)
+
+  2. How is a LaTeX File structured?
+      - True: Preamble + Textfile
+      - It is not, Entropy consumes all
+      - Header, Body and Footer
+      - Each sentence has it's own file
+
+      Hints: 
+      - Head and Body, Knees and Toes are not relevant to LaTeX
+      - Everything in Reality strifes for Entropy. The digital world is not Reality tho.
+      - Files per Sentece is a bit much, isn't it?
+      - Just like your Language Teachers, Preamble + Main Content is the way to go.
+      Related Skills:
+	-Semantic
+
+  3. How do you start and close a LaTeX document enviroment?
+	-  \begin{document}     \end{document}
+	-   document        endDocument
+	-  \beginDoc        \endDoc
+	- document() enddocument()
+	
+	Hints:
+	- commands in LaTeX usually begin with a "\"
+	- the closing and opening of structures in Latex is symmetrical
+	- CamelCasing is not usually not a thing in LaTeX
+	- it's {true answer} 
+	Related skills:
+	- Syntax Understanding
+	- Semantic Understanding
+
+  4. How do we include a picture in a Latex file?
+	- \showImage()
+	- \includegraphics{}
+	- \addpic{}
+	- includegraphics()
+     Hints:
+	- commands in LaTeX usually begin with a "\"
+	- CamelCasing is not usually not a thing in LaTeX
+	- it's {true answer} 
+     Related skills:
+	- Syntax Understanding
+	- Semantic Understanding
+
+  5. What is Math mode in Latex used for?
+	- typesetting mathematical expressions, e.g. an equation, a set and many more
+	- to solve an equation, for example "2x = 4 - 3x"
+	- to make your document look super cool, because your text becomes cursive"
+        - for doing letting the computer do basic algebra for you, e.g. what is "4+2"
+      Hints:
+	- LaTeX is a markup language
+	- LaTeX cannot solve mathematical problems
+	- you would use \textit{} to generate cursive text
+	- it's {true answer} 
+      Related skills:
+	- Syntax Understanding
+	- Semantic Understanding
+	- LaTeX understanding
+
+   6. How do you start and close and math enviroment?
+	- $ … $
+	- @ … @
+	- /begin{math} …  end{math}
+        - %%
+      Hints:
+	- % is used for comments, that don't get seen in the compiled document 
+	- math Environment is an essential feature of LaTeX and doesn't use the begin end Syntax
+	- @ is just a regular letter in LaTeX
+	- it's {true answer} 
+      Related skills:
+	- Syntax Understanding
+	- Semantic Understanding
+	- LaTeX understanding
+
+   7. What type of editor is LaTeX:
+	- WYSIWYAF What You See is What You Asked for
+	- WYSIWYM, You See Is What You Mean
+	- WYSIWYP, What You See Is What You Print 
+      Hints:
+	- Word is WYSIWYAF
+	- LaTeX is not WYSIWYAF
+	- WYSIWYP is used in the preprocess of printing of PDF documents
+	- it's {true answer}
+      Related Skills:
+	- Editor Knowledge
+	- Latex Knowledge
+	
+	
+
+	
+
