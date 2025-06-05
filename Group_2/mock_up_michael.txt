@@ -78,10 +78,7 @@ Subject:
 	- you would use \textit{} to generate cursive text
 	- it's {true answer} 
       Related skills:
-	- Syntax Understanding
-	- Semantic Understanding
-	- LaTeX understanding
-
+	  - "formulars"
    6. How do you start and close and math enviroment?
 	- $ … $
 	- @ … @
@@ -93,9 +90,7 @@ Subject:
 	- @ is just a regular letter in LaTeX
 	- it's {true answer} 
       Related skills:
-	- Syntax Understanding
-	- Semantic Understanding
-	- LaTeX understanding
+		- "formulars"
 
    7. What type of editor is LaTeX:
 	- WYSIWYAF What You See is What You Asked for
@@ -113,4 +108,3 @@ Subject:
 	
 
 	
-

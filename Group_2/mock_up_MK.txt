@@ -87,6 +87,11 @@ Questions:
 
 	-Syntax comprehension
 
+	Related Skills:
+	    "formulars",
+        "greek_letters"
+ 
+
 5. What is the main purpose of LaTeX?
 
 	-True Answer: High-quality typesetting, especially for technical and scientific documents
@@ -162,12 +167,8 @@ Questions:
 	-Sections divide your ideas
 
 	Related skills:
-
-	-Document organization
-
-	-Writing
-
-	-Presentation of ideas
+       - "keywords",
+    	- "document_structure"
 
 8. Which file extension does a basic LaTeX source file use?
 
@@ -190,10 +191,7 @@ Questions:
 	-Think T-E-X as in TeX
 
 	Related skills:
-
-	-File management
-
-	-Document compilation
+        "text_editor_knowledge"
 
 9. What does the command \begin{itemize} do?
 

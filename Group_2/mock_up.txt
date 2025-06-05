@@ -18,12 +18,7 @@ Subject:
       4 The answer is {True Answere}!
 
       Related skills:
-      - Word/Google Docs
-      - HTML
-      - Programming
-      - Mathematics
-      - Science Stuff 
-      - Literature (Writing/Creative writing)
+        - "text_editor_knowledge"
 
   2. How is a LaTeX File structured?
       - True: Preamble + Textfile
@@ -37,6 +32,9 @@ Subject:
       - Files per Sentece is a bit much, isn't it?
       - Just like your Language Teachers, Preamble + Main Content is the way to go.
 
+        Related Skills:
+        - "document_structure"
+
   3. Write an equation that looks like this : $\Sigma_{i=1}^n x_i + 2$
 
       Hints:
@@ -48,10 +46,8 @@ Subject:
       - Here is the answer $\Sigma_{i=1}^n x_i + 2$
 
       Related Skills:
-      - Mathematics
-      - Programming
-      - greek
-      - Computer Literacy
+        - "formulars"
+        - "greek_letters"
 
   4. Suppose you a diagram you want to include into your work. It is stored as diagram1.pdf in the same folder as your .tex file. Write the LaTeX expression that would show the diagram
 
@@ -63,6 +59,9 @@ Subject:
   - The solution does have the form \<Specific Keyword>{diagram1.pdf}
   - Including graphics can be suprisingly hard. Sometimes it would be nice if we simply could tell it to include graphics, right?
   - The solution is \includegraphics{diagram1.pdf}
+
+  Related Skills:
+  - "packages"
 
   5. Which one of these examples is not correct LaTeX
 
@@ -79,5 +78,4 @@ Subject:
     - The answer is number 3. The } is not closed properly as \{ escapes and printes {.
 
     Related Skills:
-    - Mathematics
-    - Programming
+     - "keywords"
